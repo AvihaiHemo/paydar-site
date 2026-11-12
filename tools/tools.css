@@ -78,9 +78,9 @@ footer a { color: var(--muted); }
 @media (min-width: 680px) { .land { grid-template-columns: 1.2fr 1fr; } }
 .land h1 { font-size: 40px; }
 .land h1 em { font-style: normal; color: var(--accent); }
-.land img.shot { width: 100%; max-width: 300px; justify-self: center; border-radius: 24px; }
+.land img.shot { width: 100%; max-width: 300px; height: auto; justify-self: center; border-radius: 24px; }
 .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
-.shots img { width: 100%; border-radius: 20px; }
+.shots img { width: 100%; height: auto; border-radius: 20px; }
 .grid { display: grid; gap: 0 16px; }
 @media (min-width: 680px) { .grid { grid-template-columns: 1fr 1fr; } }
 .grid .card { margin: 8px 0; }
