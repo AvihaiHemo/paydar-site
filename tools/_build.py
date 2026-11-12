@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the Paydar calculator pages (tools/<slug>/index.html), tools/index.html and sitemap.xml.
+"""Builds the whole Paydar site: index.html (landing), tools/index.html, tools/<slug>/index.html and sitemap.xml.
 
     python3 tools/_build.py
 
@@ -39,7 +39,7 @@ RATE = field('rate', 'Hourly rate', '20', prefix='$')
 
 PAGES = [
     {
-        'slug': 'overtime-calculator', 'tool': 'overtime',
+        'slug': 'overtime-calculator', 'card': 'Regular, time-and-a-half and double-time pay for your week.', 'tool': 'overtime',
         'title': 'Overtime Calculator: Weekly and Daily Overtime Pay',
         'h1': 'Overtime calculator',
         'desc': 'Free overtime calculator. Enter your hours for each day and your hourly rate to see regular, time-and-a-half and double-time pay. Federal, California, Alaska and Colorado rules.',
@@ -70,7 +70,7 @@ PAGES = [
         ],
     },
     {
-        'slug': 'time-card-calculator', 'tool': 'timecard',
+        'slug': 'time-card-calculator', 'card': 'Clock-in and clock-out times to total hours and pay.', 'tool': 'timecard',
         'title': 'Time Card Calculator: Hours Worked and Pay, With Breaks',
         'h1': 'Time card calculator',
         'desc': 'Free time card calculator. Enter clock-in and clock-out times and unpaid breaks for each day to get total hours, decimal hours, overtime and gross pay.',
@@ -95,7 +95,7 @@ PAGES = [
         ],
     },
     {
-        'slug': 'paycheck-checker', 'tool': 'paycheck',
+        'slug': 'paycheck-checker', 'card': 'Compare your paystub with the hours you worked.', 'tool': 'paycheck',
         'title': 'Is My Paycheck Right? Check Your Pay Against Your Hours',
         'h1': 'Is my paycheck right?',
         'desc': 'Free paycheck checker for hourly workers. Enter your hours, rate and the gross pay on your paystub to see if money is missing, and how many hours it adds up to.',
@@ -126,7 +126,7 @@ PAGES = [
         ],
     },
     {
-        'slug': 'time-clock-rounding-calculator', 'tool': 'rounding',
+        'slug': 'time-clock-rounding-calculator', 'card': 'What the 7-minute rule adds or takes from your pay.', 'tool': 'rounding',
         'title': '7-Minute Rule Calculator: Time Clock Rounding and Your Pay',
         'h1': 'Time clock rounding calculator',
         'desc': 'See how time clock rounding (the 7-minute rule) changes your paid time. Enter your real clock-in and clock-out to see the rounded punch and what it costs or adds per year.',
@@ -152,7 +152,7 @@ PAGES = [
         ],
     },
     {
-        'slug': 'tip-out-calculator', 'tool': 'tipout',
+        'slug': 'tip-out-calculator', 'card': 'What you keep after tip-out, and your real hourly pay.', 'tool': 'tipout',
         'title': 'Tip Out Calculator for Servers and Bartenders',
         'h1': 'Tip out calculator',
         'desc': 'Free tip out calculator for servers and bartenders. Enter your tips, sales and tip-out percentages to see what you keep and your real hourly pay for the shift.',
@@ -181,7 +181,7 @@ PAGES = [
         ],
     },
     {
-        'slug': 'nanny-pay-calculator', 'tool': 'nanny',
+        'slug': 'nanny-pay-calculator', 'card': 'Guaranteed hours and overtime for the week.', 'tool': 'nanny',
         'title': 'Nanny Pay Calculator: Guaranteed Hours and Overtime',
         'h1': 'Nanny pay calculator',
         'desc': 'Free nanny pay calculator. Enter your hourly rate, guaranteed hours and hours worked to see weekly pay, the guaranteed-hours top-up and overtime over 40 hours.',
@@ -207,13 +207,20 @@ PAGES = [
 ]
 
 
-def head(title, desc, path, depth, extra=''):
+V = '3'  # bump when site.css or tools.js change: browsers cache them for hours
+APPLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>')
+STORE_BTN = f'<a class="store" href="{STORE}" aria-label="Download Paydar on the App Store">{APPLE}<span><small>Download on the</small><b>App Store</b></span></a>'
+
+
+def head(title, desc, path, depth, extra='', current=''):
     up = '../' * depth
-    return f'''<!doctype html>
+    home = up or './'
+    cur = lambda k: ' aria-current="page"' if k == current else ''
+    return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{BASE}/{path}">
@@ -223,30 +230,46 @@ def head(title, desc, path, depth, extra=''):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{BASE}/{path}">
 <meta property="og:image" content="{BASE}/img/shot-03.jpg">
+<meta name="theme-color" content="#F8F1E4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16110C" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{up}icon.png">
-<link rel="stylesheet" href="{up}style.css">
-<link rel="stylesheet" href="{up}tools/tools.css">
+<link rel="apple-touch-icon" href="{up}icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
+<link rel="stylesheet" href="{up}site.css?v={V}">
 {extra}</head>
 <body>
-<header class="top"><a class="brand" href="{up or './'}"><img src="{up}icon.png" alt="" width="32" height="32">Paydar</a>
-<a class="get" href="{STORE}">Get the app</a></header>
-'''
+<header class="nav"><div class="wrap">
+<a class="brand" href="{home}"><img src="{up}icon.png" alt="" width="34" height="34">Paydar</a>
+<nav class="nav-links" aria-label="Main">
+<a class="opt" href="{home}#how">How it works</a>
+<a href="{up}tools/"{cur('tools')}>Calculators</a>
+<a class="opt" href="{LEGAL}/support/">Support</a>
+</nav>
+<a class="btn" href="{STORE}">{APPLE}Get the app</a>
+</div></header>
+"""
 
 
 def cta(text):
-    return f'''<aside class="cta"><img src="../../icon.png" alt="" width="56" height="56">
+    return f"""<aside class="cta"><img src="../../icon.png" alt="" width="56" height="56">
 <div><strong>Let your phone keep the record.</strong><p>{text}</p>
-<a class="btn" href="{STORE}">Get Paydar for iPhone</a><span class="muted small">Try 7 days free</span></div></aside>'''
+{STORE_BTN}<p class="muted small" style="margin:10px 0 0">Try 7 days free</p></div></aside>"""
 
 
 def foot(depth):
     up = '../' * depth
-    return f'''<p class="muted small">Estimates only. Not legal, tax or financial advice. Wage rules vary by state and job.</p>
-<footer>© 2026 Avihai Hemo · <a href="{up or './'}">Paydar</a> · <a href="{up}tools/">Free calculators</a> · <a href="{LEGAL}/privacy/">Privacy</a> · <a href="{LEGAL}/support/">Support</a></footer>
-</main>
+    return f"""<footer><div class="wrap">
+<span class="copy">© 2026 Avihai Hemo</span>
+<a href="{up or './'}">Paydar</a><a href="{up}tools/">Free calculators</a><a href="{LEGAL}/privacy/">Privacy Policy</a><a href="{LEGAL}/support/">Support</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+</div></footer>
 </body>
 </html>
-'''
+"""
+
+
+DISCLAIMER = '<p class="muted small">Estimates only. Not legal, tax or financial advice. Wage rules vary by state and job.</p>'
 
 
 def page(p):
@@ -262,9 +285,9 @@ def page(p):
     if p.get('verdict_rounding'):
         verdict = ('<div id="verdict" class="verdict"><strong id="o-diff"></strong>'
                    '<p>Per shift: <b id="o-shift"></b> · Per year: <b id="o-year"></b></p></div>')
-    others = ''.join(f'<li><a href="../{o["slug"]}/">{o["h1"]}</a></li>' for o in PAGES if o is not p)
+    others = ''.join(f'<a class="card tool" href="../{o["slug"]}/"><strong>{o["h1"]}</strong></a>' for o in PAGES if o is not p)
     faqs = ''.join(f'<h3>{html.escape(q)}</h3><p>{html.escape(a)}</p>' for q, a in p['faq'])
-    return (head(p['title'] + ' | Paydar', p['desc'], f"tools/{p['slug']}/", 2, extra) + f'''<main>
+    return (head(p['title'] + ' | Paydar', p['desc'], f"tools/{p['slug']}/", 2, extra, 'tools') + f"""<main class="wrap narrow page">
 <h1>{p['h1']}</h1>
 <p class="lede">{p['lede']}</p>
 <div class="calc">
@@ -276,20 +299,100 @@ def page(p):
 <h2>Questions</h2>
 {faqs}
 <h2>More free calculators</h2>
-<ul>{others}</ul>
-<script src="../tools.js" defer></script>
-''' + foot(2))
+<div class="tools" style="margin:14px 0 28px">{others}</div>
+{DISCLAIMER}
+</main>
+<script src="../tools.js?v={V}" defer></script>
+""" + foot(2))
+
+
+def tool_cards(prefix):
+    return ''.join(f'<a class="card tool" href="{prefix}{p["slug"]}/"><strong>{p["h1"]}</strong><span>{p["card"]}</span></a>' for p in PAGES)
 
 
 def index():
-    items = ''.join(f'<a class="card tool" href="{p["slug"]}/"><strong>{p["h1"]}</strong><span class="muted">{p["lede"]}</span></a>' for p in PAGES)
     title = 'Free Pay Calculators for Hourly Workers | Paydar'
     desc = 'Free calculators for hourly workers: overtime, time card, paycheck check, time clock rounding, tip out and nanny pay.'
-    return head(title, desc, 'tools/', 1) + f'''<main>
+    return head(title, desc, 'tools/', 1, current='tools') + f"""<main class="wrap page">
 <h1>Free pay calculators</h1>
 <p class="lede">Quick answers for hourly workers. No sign-up, nothing stored: the numbers stay in your browser.</p>
-{items}
-''' + foot(1)
+<div class="tools" style="margin:26px 0 32px">{tool_cards('')}</div>
+{DISCLAIMER}
+</main>
+""" + foot(1)
+
+
+def shot(n, alt, eager=False):
+    return f'<div class="shot"><img src="img/shot-{n}.jpg" width="648" height="999" alt="{alt}"{"" if eager else " loading=\"lazy\""}></div>'
+
+
+def landing():
+    title = 'Paydar: Hours Tracker That Checks Your Paycheck'
+    desc = ('Paydar is an hours tracker for hourly workers. Clock in with one tap, see what your paycheck should be '
+            'with overtime and tips, and catch it when it comes up short.')
+    ld = {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Paydar: Hours Tracker & Pay',
+          'operatingSystem': 'iOS', 'applicationCategory': 'BusinessApplication', 'url': BASE + '/', 'downloadUrl': STORE,
+          'description': 'Hours tracker for hourly workers that works out what your paycheck should be and checks it against your paystub.'}
+    extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n'
+    steps = [
+        ('Clock in with one tap', 'From the app, the Lock Screen, a widget or Siri. Or let Paydar clock you in when you arrive at work.'),
+        ('See your pay build up', 'Overtime, tips, breaks, night differentials and guaranteed hours are worked out for you, for every job.'),
+        ('Check your paystub', 'Type in the gross pay on your stub. Paydar compares it with your hours and shows the gap and the likely cause.'),
+        ('Keep your own record', 'Export timesheets as PDF, Excel or CSV. Your data stays on your iPhone, with optional Cloud Backup.'),
+    ]
+    step_html = ''.join(f'<div class="card"><span class="num">{i}</span><h3>{t}</h3><p class="muted">{d}</p></div>' for i, (t, d) in enumerate(steps, 1))
+    chips = ''.join(f'<li>{c}</li>' for c in ['Servers', 'Bartenders', 'Nannies', 'Nurses', 'Retail', 'Warehouse', 'Trades', 'Two jobs'])
+    return head(title, desc, '', 0, extra) + f"""<main>
+<div class="wrap">
+<section class="hero">
+<div>
+<span class="eyebrow">Hours tracker for hourly workers</span>
+<h1>Are you paid for <em>every hour</em> you work?</h1>
+<p class="lede">Paydar tracks your shifts, works out what your paycheck should be, and tells you when your paystub comes up short.</p>
+{STORE_BTN}
+<ul class="ticks"><li>Try 7 days free</li><li>No ads</li><li>No tracking</li></ul>
+</div>
+{shot('03', "Paydar's Check My Paycheck screen showing money that may be missing from a paycheck", True)}
+</section>
+
+<section id="how">
+<div class="sec-head"><h2>How it works</h2><p class="muted">Track as you work. When payday comes, you already know the number.</p></div>
+<div class="steps">{step_html}</div>
+</section>
+
+<section>
+<div class="row">
+{shot('01', 'Paydar Today screen with a running shift timer and live earnings')}
+<div><h2>Your shift, counted to the minute</h2><p class="muted">One tap starts the clock. Breaks, pauses and a late clock-out are all there, and you watch what you have earned so far while you work.</p></div>
+</div>
+<div class="row flip">
+{shot('04', 'Paydar Paycheck screen with regular pay, overtime and gross pay for the pay period')}
+<div><h2>Know your paycheck before payday</h2><p class="muted">Regular hours, overtime at time and a half, tips and differentials, added up for the whole pay period and for every job.</p></div>
+</div>
+<div class="row">
+{shot('07', 'Paydar chart of expected pay against paid amounts over several pay periods')}
+<div><h2>See it when a paycheck comes up short</h2><p class="muted">Each check you save is compared with what you earned. A short period stands out in gold, with the hours behind it.</p></div>
+</div>
+</section>
+
+<section>
+<div class="sec-head"><h2>Made for hourly work</h2><p class="muted">Tips and tip-outs, guaranteed hours, night differentials, 12-hour shifts and two jobs at once.</p></div>
+<ul class="chips">{chips}</ul>
+<p class="muted small" style="margin-top:18px">In English, Spanish, Portuguese, German, French, Italian, Dutch, Swedish, Polish, Japanese and Korean.</p>
+</section>
+
+<section id="calculators">
+<div class="sec-head"><h2>Free calculators</h2><p class="muted">No app and no sign-up needed.</p></div>
+<div class="tools">{tool_cards('tools/')}</div>
+</section>
+
+<section>
+<div class="band"><h2>Know what you are owed before payday</h2><p>Start tracking today and check your next paycheck in ten seconds.</p>{STORE_BTN}</div>
+</section>
+{DISCLAIMER}
+</div>
+</main>
+""" + foot(0)
 
 
 def main():
@@ -300,11 +403,13 @@ def main():
             f.write(page(p))
     with open(os.path.join(HERE, 'index.html'), 'w') as f:
         f.write(index())
-    urls = ['', 'tools/'] + [f"tools/{p['slug']}/" for p in PAGES] 
+    with open(os.path.join(HERE, '..', 'index.html'), 'w') as f:
+        f.write(landing())
+    urls = ['', 'tools/'] + [f"tools/{p['slug']}/" for p in PAGES]
     with open(os.path.join(HERE, '..', 'sitemap.xml'), 'w') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                 + ''.join(f'  <url><loc>{BASE}/{u}</loc></url>\n' for u in urls) + '</urlset>\n')
-    print(f'{len(PAGES)} calculators, index and sitemap written')
+    print(f'{len(PAGES)} calculators, tools index, landing page and sitemap written')
 
 
 if __name__ == '__main__':
