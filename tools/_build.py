@@ -207,7 +207,7 @@ PAGES = [
 ]
 
 
-V = '4'  # bump when site.css or tools.js change: browsers cache them for hours
+V = '5'  # bump when site.css or tools.js change: browsers cache them for hours
 APPLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>')
 STORE_BTN = f'<a class="store" href="{STORE}" aria-label="Download Paydar on the App Store">{APPLE}<span><small>Download on the</small><b>App Store</b></span></a>'
 
@@ -237,7 +237,9 @@ def head(title, desc, path, depth, extra='', current=''):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
+<script>document.documentElement.className = "js"</script>
 <link rel="stylesheet" href="{up}site.css?v={V}">
+<script src="{up}site.js?v={V}" defer></script>
 {extra}</head>
 <body>
 <header class="nav"><div class="wrap">
@@ -306,8 +308,8 @@ def page(p):
 """ + foot(2))
 
 
-def tool_cards(prefix):
-    return ''.join(f'<a class="card tool" href="{prefix}{p["slug"]}/"><strong>{p["h1"]}</strong><span>{p["card"]}</span></a>' for p in PAGES)
+def tool_cards(prefix, reveal=False):
+    return ''.join(f'<a class="card tool" href="{prefix}{p["slug"]}/"{f" data-reveal style=\"--i:{i}\"" if reveal else ""}><strong>{p["h1"]}</strong><span>{p["card"]}</span></a>' for i, p in enumerate(PAGES))
 
 
 def index():
@@ -340,54 +342,59 @@ def landing():
         ('Check your paystub', 'Type in the gross pay on your stub. Paydar compares it with your hours and shows the gap and the likely cause.'),
         ('Keep your own record', 'Export timesheets as PDF, Excel or CSV. Your data stays on your iPhone, with optional Cloud Backup.'),
     ]
-    step_html = ''.join(f'<div class="card"><span class="num">{i}</span><h3>{t}</h3><p class="muted">{d}</p></div>' for i, (t, d) in enumerate(steps, 1))
-    chips = ''.join(f'<li>{c}</li>' for c in ['Servers', 'Bartenders', 'Nannies', 'Nurses', 'Retail', 'Warehouse', 'Trades', 'Two jobs'])
+    step_html = ''.join(f'<div class="card" data-reveal style="--i:{i - 1}"><span class="num">{i}</span><h3>{t}</h3><p class="muted">{d}</p></div>' for i, (t, d) in enumerate(steps, 1))
+    chips = ''.join(f'<li data-reveal style="--i:{i}">{c}</li>' for i, c in enumerate( ['Servers', 'Bartenders', 'Nannies', 'Nurses', 'Retail', 'Warehouse', 'Trades', 'Two jobs']))
     return head(title, desc, '', 0, extra) + f"""<main>
 <div class="wrap">
 <section class="hero">
-<div>
+<div class="glow" aria-hidden="true"><i></i><i></i></div>
+<div class="hero-copy">
 <span class="eyebrow">Hours tracker for hourly workers</span>
 <h1>Are you paid for <em>every hour</em> you work?</h1>
 <p class="lede">Paydar tracks your shifts, works out what your paycheck should be, and tells you when your paystub comes up short.</p>
 {STORE_BTN}
 <ul class="ticks"><li>Try 7 days free</li><li>No ads</li><li>No tracking</li></ul>
 </div>
+<div class="hero-shot">
 {shot('03', "Paydar's Check My Paycheck screen showing money that may be missing from a paycheck", True)}
+<span class="chip c1" aria-hidden="true"><i class="dot"></i>Clocked in · 03:12:58</span>
+<span class="chip c2" aria-hidden="true">Overtime ×1.5 <b>+$192.00</b></span>
+</div>
 </section>
 
 <section id="how">
-<div class="sec-head"><h2>How it works</h2><p class="muted">Track as you work. When payday comes, you already know the number.</p></div>
+<div class="sec-head" data-reveal><h2>How it works</h2><p class="muted">Track as you work. When payday comes, you already know the number.</p></div>
 <div class="steps">{step_html}</div>
 </section>
 
 <section>
-<div class="row">
+<div class="row" data-reveal>
 {shot('01', 'Paydar Today screen with a running shift timer and live earnings')}
 <div><h2>Your shift, counted to the minute</h2><p class="muted">One tap starts the clock. Breaks, pauses and a late clock-out are all there, and you watch what you have earned so far while you work.</p></div>
 </div>
-<div class="row flip">
+<div class="row flip" data-reveal>
 {shot('04', 'Paydar Paycheck screen with regular pay, overtime and gross pay for the pay period')}
 <div><h2>Know your paycheck before payday</h2><p class="muted">Regular hours, overtime at time and a half, tips and differentials, added up for the whole pay period and for every job.</p></div>
 </div>
-<div class="row">
+<div class="row" data-reveal>
 {shot('07', 'Paydar chart of expected pay against paid amounts over several pay periods')}
 <div><h2>See it when a paycheck comes up short</h2><p class="muted">Each check you save is compared with what you earned. A short period stands out in gold, with the hours behind it.</p></div>
 </div>
 </section>
 
 <section>
-<div class="sec-head"><h2>Made for hourly work</h2><p class="muted">Tips and tip-outs, guaranteed hours, night differentials, 12-hour shifts and two jobs at once.</p></div>
+<div class="sec-head" data-reveal><h2>Made for hourly work</h2><p class="muted">Tips and tip-outs, guaranteed hours, night differentials, 12-hour shifts and two jobs at once.</p></div>
 <ul class="chips">{chips}</ul>
 <p class="muted small" style="margin-top:18px">In English, Spanish, Portuguese, German, French, Italian, Dutch, Swedish, Polish, Japanese and Korean.</p>
 </section>
 
 <section id="calculators">
-<div class="sec-head"><h2>Free calculators</h2><p class="muted">No app and no sign-up needed.</p></div>
-<div class="tools">{tool_cards('tools/')}</div>
+<div class="sec-head" data-reveal><h2>Free calculators</h2><p class="muted">No app and no sign-up needed.</p></div>
+<div class="tools">{tool_cards('tools/', True)}</div>
 </section>
 
 <section>
-<div class="band"><h2>Know what you are owed before payday</h2><p>Start tracking today and check your next paycheck in ten seconds.</p>{STORE_BTN}</div>
+<div class="band" data-reveal><div class="beaver" role="img" aria-label="Paydar's beaver mascot waving"></div><h2>Know what you are owed before payday</h2><p>Start tracking today and check your next paycheck in ten seconds.</p>{STORE_BTN}</div>
 </section>
 {DISCLAIMER}
 </div>
