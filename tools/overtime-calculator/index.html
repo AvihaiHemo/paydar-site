@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overtime Calculator: Weekly and Daily Overtime Pay | Paydar</title>
+<meta name="description" content="Free overtime calculator. Enter your hours for each day and your hourly rate to see regular, time-and-a-half and double-time pay. Federal, California, Alaska and Colorado rules.">
+<link rel="canonical" href="https://paydarapp.com/tools/overtime-calculator/">
+<meta name="apple-itunes-app" content="app-id=6821644227">
+<meta property="og:title" content="Overtime Calculator: Weekly and Daily Overtime Pay | Paydar">
+<meta property="og:description" content="Free overtime calculator. Enter your hours for each day and your hourly rate to see regular, time-and-a-half and double-time pay. Federal, California, Alaska and Colorado rules.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paydarapp.com/tools/overtime-calculator/">
+<meta property="og:image" content="https://paydarapp.com/img/shot-03.jpg">
+<link rel="icon" href="../../icon.png">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I calculate time and a half?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply your hourly rate by 1.5. At $20 an hour, overtime pays $30 an hour. Five overtime hours add $150 to the week."}}, {"@type": "Question", "name": "Is overtime after 8 hours or 40 hours?", "acceptedAnswer": {"@type": "Answer", "text": "Federal law uses 40 hours in a workweek. California, Alaska and a few other states also pay overtime after 8 hours in one day. Choose your rule in the calculator above."}}, {"@type": "Question", "name": "Does a two-week pay period change overtime?", "acceptedAnswer": {"@type": "Answer", "text": "No. Overtime is worked out one workweek at a time. Working 30 hours one week and 50 the next means 10 overtime hours, even though the two weeks average 40."}}, {"@type": "Question", "name": "What is the overtime premium?", "acceptedAnswer": {"@type": "Answer", "text": "It is the extra half on top of your regular rate. At $20 an hour the premium is $10 for each overtime hour. For tax years 2025 to 2028, the US \"no tax on overtime\" deduction applies to this premium part, up to a yearly limit."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Overtime calculator", "url": "https://paydarapp.com/tools/overtime-calculator/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="../../"><img src="../../icon.png" alt="" width="32" height="32">Paydar</a>
+<a class="get" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227">Get the app</a></header>
+<main>
+<h1>Overtime calculator</h1>
+<p class="lede">Enter the hours you worked each day. The calculator splits them into regular, time-and-a-half and double-time hours and shows your gross pay for the week.</p>
+<div class="calc">
+<form data-tool="overtime" class="card"><label class="f"><span>Hourly rate</span><span class="in"><span class="pre">$</span><input id="rate" type="number" value="20" step="0.01" min="0" inputmode="decimal"></span></label><label class="f"><span>Overtime rule</span><span class="in"><select id="rule">
+<option value="us">Federal: over 40 hours a week</option>
+<option value="ca">California: over 8 a day, over 40 a week</option>
+<option value="ak">Alaska: over 8 a day, over 40 a week</option>
+<option value="co">Colorado: over 12 a day, over 40 a week</option></select></span></label>
+<p class="lab">Hours worked each day</p><div class="days"><label class="day"><span>Mon</span><input id="d0" type="number" value="8" step="0.25" min="0" max="24" inputmode="decimal"></label><label class="day"><span>Tue</span><input id="d1" type="number" value="9" step="0.25" min="0" max="24" inputmode="decimal"></label><label class="day"><span>Wed</span><input id="d2" type="number" value="8" step="0.25" min="0" max="24" inputmode="decimal"></label><label class="day"><span>Thu</span><input id="d3" type="number" value="10" step="0.25" min="0" max="24" inputmode="decimal"></label><label class="day"><span>Fri</span><input id="d4" type="number" value="9" step="0.25" min="0" max="24" inputmode="decimal"></label><label class="day"><span>Sat</span><input id="d5" type="number" value="0" step="0.25" min="0" max="24" inputmode="decimal"></label><label class="day"><span>Sun</span><input id="d6" type="number" value="0" step="0.25" min="0" max="24" inputmode="decimal"></label></div></form>
+<div class="card result"><dl><div><dt>Regular</dt><dd id="o-reg">–</dd></div><div><dt>Overtime ×1.5</dt><dd id="o-ot">–</dd></div><div id="row-dt"><dt>Double time ×2</dt><dd id="o-dt">–</dd></div><div class="total"><dt>Gross pay this week</dt><dd id="o-total">–</dd></div><div><dt>Overtime premium (the extra half)</dt><dd id="o-premium">–</dd></div></dl></div>
+</div>
+<aside class="cta"><img src="../../icon.png" alt="" width="56" height="56">
+<div><strong>Let your phone keep the record.</strong><p>Paydar does this for every shift as you clock in and out, then checks the total against your paystub.</p>
+<a class="btn" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227">Get Paydar for iPhone</a><span class="muted small">Try 7 days free</span></div></aside>
+<h2>How overtime is calculated</h2>
+<p>Under the federal Fair Labor Standards Act, most hourly workers earn at least 1.5 times their regular rate for every hour over 40 in a workweek. Federal law counts the week, not the day: a 12-hour shift is not overtime by itself unless the week goes over 40.</p>
+<p>Some states add daily overtime:</p>
+<ul>
+<li><strong>California:</strong> 1.5× after 8 hours in a day and for the first 8 hours on the seventh day in a row of the workweek; 2× after 12 hours in a day and after 8 hours on that seventh day.</li>
+<li><strong>Alaska:</strong> 1.5× after 8 hours in a day or 40 in a week.</li>
+<li><strong>Colorado:</strong> 1.5× after 12 hours in a day, 12 hours in a row, or 40 in a week.</li>
+</ul>
+<p>An hour is only counted as overtime once. If a California shift is already paid at 1.5× for running past 8 hours, those hours are not added again to the weekly 40.</p>
+<h2>Questions</h2>
+<h3>How do I calculate time and a half?</h3><p>Multiply your hourly rate by 1.5. At $20 an hour, overtime pays $30 an hour. Five overtime hours add $150 to the week.</p><h3>Is overtime after 8 hours or 40 hours?</h3><p>Federal law uses 40 hours in a workweek. California, Alaska and a few other states also pay overtime after 8 hours in one day. Choose your rule in the calculator above.</p><h3>Does a two-week pay period change overtime?</h3><p>No. Overtime is worked out one workweek at a time. Working 30 hours one week and 50 the next means 10 overtime hours, even though the two weeks average 40.</p><h3>What is the overtime premium?</h3><p>It is the extra half on top of your regular rate. At $20 an hour the premium is $10 for each overtime hour. For tax years 2025 to 2028, the US &quot;no tax on overtime&quot; deduction applies to this premium part, up to a yearly limit.</p>
+<h2>More free calculators</h2>
+<ul><li><a href="../time-card-calculator/">Time card calculator</a></li><li><a href="../paycheck-checker/">Is my paycheck right?</a></li><li><a href="../time-clock-rounding-calculator/">Time clock rounding calculator</a></li><li><a href="../tip-out-calculator/">Tip out calculator</a></li><li><a href="../nanny-pay-calculator/">Nanny pay calculator</a></li></ul>
+<script src="../tools.js" defer></script>
+<p class="muted small">Estimates only. Not legal, tax or financial advice. Wage rules vary by state and job.</p>
+<footer>© 2026 Avihai Hemo · <a href="../../">Paydar</a> · <a href="../../tools/">Free calculators</a> · <a href="https://avihaihemo.github.io/apps/paydar/privacy/">Privacy</a> · <a href="https://avihaihemo.github.io/apps/paydar/support/">Support</a></footer>
+</main>
+</body>
+</html>

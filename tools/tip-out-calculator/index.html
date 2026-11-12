@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tip Out Calculator for Servers and Bartenders | Paydar</title>
+<meta name="description" content="Free tip out calculator for servers and bartenders. Enter your tips, sales and tip-out percentages to see what you keep and your real hourly pay for the shift.">
+<link rel="canonical" href="https://paydarapp.com/tools/tip-out-calculator/">
+<meta name="apple-itunes-app" content="app-id=6821644227">
+<meta property="og:title" content="Tip Out Calculator for Servers and Bartenders | Paydar">
+<meta property="og:description" content="Free tip out calculator for servers and bartenders. Enter your tips, sales and tip-out percentages to see what you keep and your real hourly pay for the shift.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paydarapp.com/tools/tip-out-calculator/">
+<meta property="og:image" content="https://paydarapp.com/img/shot-03.jpg">
+<link rel="icon" href="../../icon.png">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a normal tip out percentage?", "acceptedAnswer": {"@type": "Answer", "text": "It varies by restaurant. Common ranges are 1 to 3 percent of sales, or 15 to 30 percent of tips, split between bar, bussers and hosts."}}, {"@type": "Question", "name": "Is tip out based on sales or tips?", "acceptedAnswer": {"@type": "Answer", "text": "Either. Check your restaurant's policy and pick \"sales\" or \"tips\" for each role in the calculator."}}, {"@type": "Question", "name": "Can my manager be in the tip pool?", "acceptedAnswer": {"@type": "Answer", "text": "No. Federal law bars managers and supervisors from keeping any part of employees' tips."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Tip out calculator", "url": "https://paydarapp.com/tools/tip-out-calculator/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="../../"><img src="../../icon.png" alt="" width="32" height="32">Paydar</a>
+<a class="get" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227">Get the app</a></header>
+<main>
+<h1>Tip out calculator</h1>
+<p class="lede">Enter tonight's tips and sales and your restaurant's tip-out percentages. You will see what goes to each role, what you keep and what the shift paid per hour.</p>
+<div class="calc">
+<form data-tool="tipout" class="card"><label class="f"><span>Total tips</span><span class="in"><span class="pre">$</span><input id="tips" type="number" value="240" step="0.01" min="0" inputmode="decimal"></span></label><label class="f"><span>Your sales</span><span class="in"><span class="pre">$</span><input id="sales" type="number" value="1400" step="0.01" min="0" inputmode="decimal"></span></label><div class="pair"><label class="f"><span>Bar</span><span class="in"><input id="pct-a" type="number" value="1" step="0.5" min="0" inputmode="decimal"><span class="pre">%</span></span></label><label class="f"><span>of</span><span class="in"><select id="base-a"><option value="sales" selected>sales</option><option value="tips">tips</option></select></span></label></div><div class="pair"><label class="f"><span>Busser</span><span class="in"><input id="pct-b" type="number" value="1.5" step="0.5" min="0" inputmode="decimal"><span class="pre">%</span></span></label><label class="f"><span>of</span><span class="in"><select id="base-b"><option value="sales" selected>sales</option><option value="tips">tips</option></select></span></label></div><div class="pair"><label class="f"><span>Host / food runner</span><span class="in"><input id="pct-c" type="number" value="5" step="0.5" min="0" inputmode="decimal"><span class="pre">%</span></span></label><label class="f"><span>of</span><span class="in"><select id="base-c"><option value="sales">sales</option><option value="tips" selected>tips</option></select></span></label></div><label class="f"><span>Hourly wage</span><span class="in"><span class="pre">$</span><input id="rate" type="number" value="5.50" step="0.01" min="0" inputmode="decimal"></span></label><label class="f"><span>Hours worked</span><span class="in"><input id="hours" type="number" value="6" step="0.25" min="0" inputmode="decimal"></span></label></form>
+<div class="card result"><dl><div><dt>Bar</dt><dd id="o-a">–</dd></div><div><dt>Busser</dt><dd id="o-b">–</dd></div><div><dt>Host / food runner</dt><dd id="o-c">–</dd></div><div><dt>Total tip out</dt><dd id="o-out">–</dd></div><div><dt>Tips you keep</dt><dd id="o-keep">–</dd></div><div><dt>Wages</dt><dd id="o-wage">–</dd></div><div class="total"><dt>Shift total</dt><dd id="o-total">–</dd></div><div><dt>Real hourly pay</dt><dd id="o-hourly">–</dd></div></dl></div>
+</div>
+<aside class="cta"><img src="../../icon.png" alt="" width="56" height="56">
+<div><strong>Let your phone keep the record.</strong><p>Paydar logs cash and card tips and tip-outs with each shift, and checks card tips against your paystub.</p>
+<a class="btn" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227">Get Paydar for iPhone</a><span class="muted small">Try 7 days free</span></div></aside>
+<h2>How tip out works</h2>
+<p>Tip out is the share of your tips that goes to the people who support your tables: bartenders, bussers, hosts and food runners. Restaurants set it as a percentage of your <strong>sales</strong> or of your <strong>tips</strong>. A sales-based tip out is the same amount on a slow-tipping night, so it takes a larger share of what you earned.</p>
+<h2>Rules worth knowing</h2>
+<ul>
+<li>Under federal law, managers, supervisors and owners cannot take any part of a tip pool.</li>
+<li>If your employer pays the lower tipped wage ($2.13 federal minimum), your wage plus tips must still reach the full minimum wage for the hours you worked. If it does not, the employer owes the difference.</li>
+<li>Tips you receive on cards are paid through payroll and show on your paystub. Cash tips usually do not, so keep your own record.</li>
+</ul>
+<h2>Questions</h2>
+<h3>What is a normal tip out percentage?</h3><p>It varies by restaurant. Common ranges are 1 to 3 percent of sales, or 15 to 30 percent of tips, split between bar, bussers and hosts.</p><h3>Is tip out based on sales or tips?</h3><p>Either. Check your restaurant&#x27;s policy and pick &quot;sales&quot; or &quot;tips&quot; for each role in the calculator.</p><h3>Can my manager be in the tip pool?</h3><p>No. Federal law bars managers and supervisors from keeping any part of employees&#x27; tips.</p>
+<h2>More free calculators</h2>
+<ul><li><a href="../overtime-calculator/">Overtime calculator</a></li><li><a href="../time-card-calculator/">Time card calculator</a></li><li><a href="../paycheck-checker/">Is my paycheck right?</a></li><li><a href="../time-clock-rounding-calculator/">Time clock rounding calculator</a></li><li><a href="../nanny-pay-calculator/">Nanny pay calculator</a></li></ul>
+<script src="../tools.js" defer></script>
+<p class="muted small">Estimates only. Not legal, tax or financial advice. Wage rules vary by state and job.</p>
+<footer>© 2026 Avihai Hemo · <a href="../../">Paydar</a> · <a href="../../tools/">Free calculators</a> · <a href="https://avihaihemo.github.io/apps/paydar/privacy/">Privacy</a> · <a href="https://avihaihemo.github.io/apps/paydar/support/">Support</a></footer>
+</main>
+</body>
+</html>

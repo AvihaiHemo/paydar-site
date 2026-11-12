@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is My Paycheck Right? Check Your Pay Against Your Hours | Paydar</title>
+<meta name="description" content="Free paycheck checker for hourly workers. Enter your hours, rate and the gross pay on your paystub to see if money is missing, and how many hours it adds up to.">
+<link rel="canonical" href="https://paydarapp.com/tools/paycheck-checker/">
+<meta name="apple-itunes-app" content="app-id=6821644227">
+<meta property="og:title" content="Is My Paycheck Right? Check Your Pay Against Your Hours | Paydar">
+<meta property="og:description" content="Free paycheck checker for hourly workers. Enter your hours, rate and the gross pay on your paystub to see if money is missing, and how many hours it adds up to.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paydarapp.com/tools/paycheck-checker/">
+<meta property="og:image" content="https://paydarapp.com/img/shot-03.jpg">
+<link rel="icon" href="../../icon.png">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../tools/tools.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I know if my paycheck is correct?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply your regular hours by your rate, add overtime hours at 1.5 times the rate, and compare the result with the gross pay on your paystub. They should match to the cent, or within a few cents when hours are rounded."}}, {"@type": "Question", "name": "Can my employer average my hours over two weeks?", "acceptedAnswer": {"@type": "Answer", "text": "Not for overtime. Under federal law each workweek stands alone. 50 hours in one week is 10 overtime hours even if you worked 30 the week before."}}, {"@type": "Question", "name": "How far back can I claim unpaid wages?", "acceptedAnswer": {"@type": "Answer", "text": "Under federal law it is generally two years, or three years if the violation was willful. Some states allow longer. That is one reason to keep your own record of hours."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Is my paycheck right?", "url": "https://paydarapp.com/tools/paycheck-checker/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+</head>
+<body>
+<header class="top"><a class="brand" href="../../"><img src="../../icon.png" alt="" width="32" height="32">Paydar</a>
+<a class="get" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227">Get the app</a></header>
+<main>
+<h1>Is my paycheck right?</h1>
+<p class="lede">Enter the hours you worked in each week of the pay period and the gross pay printed on your paystub. You will see what you should have earned and the gap, if there is one.</p>
+<div class="calc">
+<form data-tool="paycheck" class="card"><label class="f"><span>Hourly rate</span><span class="in"><span class="pre">$</span><input id="rate" type="number" value="20" step="0.01" min="0" inputmode="decimal"></span></label><label class="f"><span>Hours worked, week 1</span><span class="in"><input id="w1" type="number" value="44" step="0.25" min="0" inputmode="decimal"></span></label><label class="f"><span>Hours worked, week 2 (leave 0 if paid weekly)</span><span class="in"><input id="w2" type="number" value="40" step="0.25" min="0" inputmode="decimal"></span></label><label class="f"><span>Tips paid through payroll (optional)</span><span class="in"><span class="pre">$</span><input id="tips" type="number" value="" step="0.01" min="0" inputmode="decimal"></span></label><label class="f"><span>Gross pay on your paystub</span><span class="in"><span class="pre">$</span><input id="paid" type="number" value="1650" step="0.01" min="0" inputmode="decimal"></span></label></form>
+<div class="card result"><dl><div><dt>You should have earned</dt><dd id="o-expected">–</dd></div><div><dt>Overtime hours</dt><dd id="o-ot">–</dd></div><div class="total"><dt>Your paystub says</dt><dd id="o-paid">–</dd></div></dl><div id="verdict" class="verdict" hidden><strong id="o-gap"></strong><p id="o-gap-note"></p></div></div>
+</div>
+<aside class="cta"><img src="../../icon.png" alt="" width="56" height="56">
+<div><strong>Let your phone keep the record.</strong><p>Paydar keeps your hours as you work, so when the paystub arrives the check takes ten seconds and shows the likely cause.</p>
+<a class="btn" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227">Get Paydar for iPhone</a><span class="muted small">Try 7 days free</span></div></aside>
+<h2>Compare gross pay, not take-home</h2>
+<p>Use the <strong>gross pay</strong> line on your stub: the amount before taxes and deductions. Take-home pay depends on your tax withholding and benefits, so it cannot be checked from hours alone.</p>
+<h2>The most common reasons a paycheck is short</h2>
+<ul>
+<li><strong>Hours missing:</strong> a shift, or the time before clock-in and after clock-out, never reached payroll.</li>
+<li><strong>Overtime paid at the regular rate,</strong> or two weeks averaged together so that no week shows more than 40 hours.</li>
+<li><strong>Time clock rounding</strong> that always rounds in the employer's favor.</li>
+<li><strong>A break deducted automatically</strong> on days you worked through it.</li>
+<li><strong>The wrong rate</strong> after a raise, or a missing shift differential.</li>
+</ul>
+<h2>What to do if money is missing</h2>
+<p>Most gaps are mistakes, and payroll will fix them when you show your own record. Bring the dates, your clock-in and clock-out times and the amount. If it is not corrected, the US Department of Labor's Wage and Hour Division and your state labor office take complaints at no cost. This page gives estimates, not legal advice.</p>
+<h2>Questions</h2>
+<h3>How do I know if my paycheck is correct?</h3><p>Multiply your regular hours by your rate, add overtime hours at 1.5 times the rate, and compare the result with the gross pay on your paystub. They should match to the cent, or within a few cents when hours are rounded.</p><h3>Can my employer average my hours over two weeks?</h3><p>Not for overtime. Under federal law each workweek stands alone. 50 hours in one week is 10 overtime hours even if you worked 30 the week before.</p><h3>How far back can I claim unpaid wages?</h3><p>Under federal law it is generally two years, or three years if the violation was willful. Some states allow longer. That is one reason to keep your own record of hours.</p>
+<h2>More free calculators</h2>
+<ul><li><a href="../overtime-calculator/">Overtime calculator</a></li><li><a href="../time-card-calculator/">Time card calculator</a></li><li><a href="../time-clock-rounding-calculator/">Time clock rounding calculator</a></li><li><a href="../tip-out-calculator/">Tip out calculator</a></li><li><a href="../nanny-pay-calculator/">Nanny pay calculator</a></li></ul>
+<script src="../tools.js" defer></script>
+<p class="muted small">Estimates only. Not legal, tax or financial advice. Wage rules vary by state and job.</p>
+<footer>© 2026 Avihai Hemo · <a href="../../">Paydar</a> · <a href="../../tools/">Free calculators</a> · <a href="https://avihaihemo.github.io/apps/paydar/privacy/">Privacy</a> · <a href="https://avihaihemo.github.io/apps/paydar/support/">Support</a></footer>
+</main>
+</body>
+</html>
