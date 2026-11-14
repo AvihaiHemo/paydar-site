@@ -166,6 +166,35 @@
     }
   };
 
+  tools.timehalf = function () {
+    var rate = cents('rate'), m = Math.round(num('hours') * 60);
+    set('o-15', money(Math.round(rate * 1.5)) + ' / h');
+    set('o-2', money(rate * 2) + ' / h');
+    set('o-pay', money(pay(rate, m, 1.5)));
+    set('o-extra', money(pay(rate, m, 0.5)));
+    set('o-dt', money(pay(rate, m, 2)));
+  };
+  tools.hours = function () {
+    var a = mins($('in').value), b = mins($('out').value);
+    if (a === null || b === null) return;
+    var m = b - a; if (m < 0) m += 1440;
+    m = Math.max(m - Math.round(num('break')), 0);
+    set('o-hm', hm(m));
+    set('o-dec', (Math.round(m / 0.6) / 100).toFixed(2) + ' h');
+    set('o-min', m + ' min');
+    set('o-pay', money(pay(cents('rate'), m, 1)));
+  };
+  tools.salary = function () {
+    var rate = cents('rate'), h = num('hours'), wk = num('weeks') || 52;
+    var reg = Math.min(h, 40), ot = Math.max(h - 40, 0);
+    var week = Math.round(rate * reg) + Math.round(rate * ot * 1.5);
+    set('o-week', money(week));
+    set('o-2week', money(week * 2));
+    set('o-month', money(Math.round(week * wk / 12)));
+    set('o-year', money(Math.round(week * wk)));
+    set('o-ot', ot ? ot.toFixed(1) + ' h at ' + money(Math.round(rate * 1.5)) : 'None');
+  };
+
   var form = document.querySelector('form[data-tool]');
   if (!form) return;
   var run = tools[form.getAttribute('data-tool')];

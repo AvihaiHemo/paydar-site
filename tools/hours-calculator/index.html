@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hours Calculator: Time Between Two Times, With Breaks | Paydar</title>
+<meta name="description" content="Free hours calculator. Enter a start time, an end time and an unpaid break to get the hours worked in hours and minutes and in decimal hours.">
+<link rel="canonical" href="https://paydarapp.com/tools/hours-calculator/">
+<meta name="apple-itunes-app" content="app-id=6821644227">
+<meta property="og:title" content="Hours Calculator: Time Between Two Times, With Breaks | Paydar">
+<meta property="og:description" content="Free hours calculator. Enter a start time, an end time and an unpaid break to get the hours worked in hours and minutes and in decimal hours.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paydarapp.com/tools/hours-calculator/">
+<meta property="og:image" content="https://paydarapp.com/img/shot-03.jpg">
+<meta name="theme-color" content="#F8F1E4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16110C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../../icon.png">
+<link rel="apple-touch-icon" href="../../icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
+<script>document.documentElement.className = "js"</script>
+<link rel="stylesheet" href="../../site.css?v=6">
+<script src="../../site.js?v=6" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many hours is 9 to 5?", "acceptedAnswer": {"@type": "Answer", "text": "8 hours. With a 30-minute unpaid lunch it is 7 hours 30 minutes, or 7.5 hours."}}, {"@type": "Question", "name": "How do I write 7 hours 45 minutes as a decimal?", "acceptedAnswer": {"@type": "Answer", "text": "7.75 hours. 45 minutes divided by 60 is 0.75."}}, {"@type": "Question", "name": "Does the calculator handle overnight shifts?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. If the end time is earlier than the start time, it counts the shift as ending the next day."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Hours calculator", "url": "https://paydarapp.com/tools/hours-calculator/", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="brand" href="../../"><img src="../../icon.png" alt="" width="34" height="34">Paydar</a>
+<nav class="nav-links" aria-label="Main">
+<a class="opt" href="../../#how">How it works</a>
+<a href="../../tools/" aria-current="page">Calculators</a>
+<a class="opt" href="https://avihaihemo.github.io/apps/paydar/support/">Support</a>
+</nav>
+<a class="btn" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>Get the app</a>
+</div></header>
+<main class="wrap narrow page">
+<h1>Hours calculator</h1>
+<p class="lede">Enter when you started and when you finished. You get the time worked in hours and minutes, in decimal hours, and what it pays.</p>
+<div class="calc">
+<form data-tool="hours" class="card"><label class="f"><span>Start time</span><span class="in"><input id="in" type="time" value="08:30" ></span></label><label class="f"><span>End time</span><span class="in"><input id="out" type="time" value="17:15" ></span></label><label class="f"><span>Unpaid break (minutes)</span><span class="in"><input id="break" type="number" value="30" step="1" min="0" inputmode="numeric"></span></label><label class="f"><span>Hourly rate</span><span class="in"><span class="pre">$</span><input id="rate" type="number" value="20" step="0.01" min="0" inputmode="decimal"></span></label></form>
+<div class="card result"><dl><div class="total"><dt>Time worked</dt><dd id="o-hm">–</dd></div><div><dt>Decimal hours</dt><dd id="o-dec">–</dd></div><div><dt>Minutes</dt><dd id="o-min">–</dd></div><div><dt>Pay at your rate</dt><dd id="o-pay">–</dd></div></dl></div>
+</div>
+<aside class="cta"><img src="../../icon.png" alt="" width="56" height="56">
+<div><strong>Let your phone keep the record.</strong><p>Skip the math: Paydar clocks your shifts with one tap and keeps the total for the week and the pay period.</p>
+<a class="store" href="https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227" aria-label="Download Paydar on the App Store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Download on the</small><b>App Store</b></span></a><p class="muted small" style="margin:10px 0 0">Try 7 days free</p></div></aside>
+<h2>How to count hours between two times</h2>
+<p>Subtract the start time from the end time, then take off unpaid breaks. From 8:30 AM to 5:15 PM is 8 hours 45 minutes; with a 30-minute lunch it is 8 hours 15 minutes. A shift that crosses midnight works too: 10:00 PM to 6:00 AM is 8 hours.</p>
+<h2>Hours and minutes to decimal hours</h2>
+<p>Payroll uses decimals. Divide the minutes by 60: 15 minutes is 0.25, 30 is 0.5, 45 is 0.75. So 8 hours 15 minutes is 8.25 hours.</p>
+<h2>Questions</h2>
+<h3>How many hours is 9 to 5?</h3><p>8 hours. With a 30-minute unpaid lunch it is 7 hours 30 minutes, or 7.5 hours.</p><h3>How do I write 7 hours 45 minutes as a decimal?</h3><p>7.75 hours. 45 minutes divided by 60 is 0.75.</p><h3>Does the calculator handle overnight shifts?</h3><p>Yes. If the end time is earlier than the start time, it counts the shift as ending the next day.</p>
+<h2>More free calculators</h2>
+<div class="tools" style="margin:14px 0 28px"><a class="card tool" href="../overtime-calculator/"><strong>Overtime calculator</strong></a><a class="card tool" href="../time-card-calculator/"><strong>Time card calculator</strong></a><a class="card tool" href="../paycheck-checker/"><strong>Is my paycheck right?</strong></a><a class="card tool" href="../time-clock-rounding-calculator/"><strong>Time clock rounding calculator</strong></a><a class="card tool" href="../tip-out-calculator/"><strong>Tip out calculator</strong></a><a class="card tool" href="../nanny-pay-calculator/"><strong>Nanny pay calculator</strong></a><a class="card tool" href="../time-and-a-half-calculator/"><strong>Time and a half calculator</strong></a><a class="card tool" href="../hourly-paycheck-calculator/"><strong>Hourly paycheck calculator</strong></a></div>
+<p class="muted small">Estimates only. Not legal, tax or financial advice. Wage rules vary by state and job.</p>
+</main>
+<script src="../tools.js?v=6" defer></script>
+<footer><div class="wrap">
+<span class="copy">© 2026 Avihai Hemo</span>
+<a href="../../">Paydar</a><a href="../../tools/">Free calculators</a><a href="https://avihaihemo.github.io/apps/paydar/privacy/">Privacy Policy</a><a href="https://avihaihemo.github.io/apps/paydar/support/">Support</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+</div></footer>
+</body>
+</html>

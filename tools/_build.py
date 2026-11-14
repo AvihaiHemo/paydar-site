@@ -204,10 +204,75 @@ PAGES = [
             ('What are guaranteed hours for a nanny?', 'A promise in the work agreement to pay for a fixed number of hours each week, whether or not the family uses all of them.'),
         ],
     },
+    {
+        'slug': 'time-and-a-half-calculator', 'card': 'Your overtime rate and pay at 1.5× and 2×.', 'tool': 'timehalf',
+        'title': 'Time and a Half Calculator: Overtime Rate and Pay',
+        'h1': 'Time and a half calculator',
+        'desc': 'Free time and a half calculator. Enter your hourly rate and overtime hours to see your 1.5× rate, your overtime pay and the double-time rate.',
+        'lede': 'Enter your hourly rate and the overtime hours you worked. You get your time-and-a-half rate, what those hours pay, and the double-time numbers.',
+        'form': RATE + field('hours', 'Overtime hours', '6', attrs='step="0.25" min="0" inputmode="decimal"'),
+        'result': out('o-15', 'Time and a half rate') + out('o-pay', 'Overtime pay', True) + out('o-extra', 'Extra over regular pay')
+                  + out('o-2', 'Double time rate') + out('o-dt', 'Same hours at double time'),
+        'cta': 'Paydar works out time and a half for every week as you clock in and out, then checks it against your paystub.',
+        'body': """<h2>What time and a half means</h2>
+<p>Time and a half is 1.5 times your regular hourly rate. At $20 an hour it is $30 an hour. Under federal law most hourly workers earn it for every hour over 40 in a workweek. Some states also require it after 8 hours in one day.</p>
+<h2>How to calculate it</h2>
+<p>Multiply your hourly rate by 1.5, then by the overtime hours. Six overtime hours at $20 an hour is 6 × $30 = $180. Of that, $60 is the extra half on top of regular pay.</p>
+<h2>Double time</h2>
+<p>Double time is 2 times your rate. Federal law does not require it. California requires it after 12 hours in a day and after 8 hours on the seventh day in a row of a workweek. Elsewhere it is company policy or a union contract.</p>""",
+        'faq': [
+            ('What is time and a half for $15 an hour?', '$22.50 an hour. Multiply the hourly rate by 1.5.'),
+            ('What is time and a half for $20 an hour?', '$30 an hour.'),
+            ('Do I get time and a half on holidays or weekends?', 'Not under federal law. Extra pay for holidays or weekends is company policy, unless those hours take you over 40 in the week.'),
+            ('Is time and a half taxed more?', 'No. Overtime pay is taxed like the rest of your wages; a bigger check can mean more withheld. For tax years 2025 to 2028 there is a US deduction for the premium part of overtime pay, up to a yearly limit.'),
+        ],
+    },
+    {
+        'slug': 'hours-calculator', 'card': 'Hours and minutes between two times, minus breaks.', 'tool': 'hours',
+        'title': 'Hours Calculator: Time Between Two Times, With Breaks',
+        'h1': 'Hours calculator',
+        'desc': 'Free hours calculator. Enter a start time, an end time and an unpaid break to get the hours worked in hours and minutes and in decimal hours.',
+        'lede': 'Enter when you started and when you finished. You get the time worked in hours and minutes, in decimal hours, and what it pays.',
+        'form': field('in', 'Start time', '08:30', kind='time') + field('out', 'End time', '17:15', kind='time')
+                + field('break', 'Unpaid break (minutes)', '30', attrs='step="1" min="0" inputmode="numeric"') + RATE,
+        'result': out('o-hm', 'Time worked', True) + out('o-dec', 'Decimal hours') + out('o-min', 'Minutes') + out('o-pay', 'Pay at your rate'),
+        'cta': 'Skip the math: Paydar clocks your shifts with one tap and keeps the total for the week and the pay period.',
+        'body': """<h2>How to count hours between two times</h2>
+<p>Subtract the start time from the end time, then take off unpaid breaks. From 8:30 AM to 5:15 PM is 8 hours 45 minutes; with a 30-minute lunch it is 8 hours 15 minutes. A shift that crosses midnight works too: 10:00 PM to 6:00 AM is 8 hours.</p>
+<h2>Hours and minutes to decimal hours</h2>
+<p>Payroll uses decimals. Divide the minutes by 60: 15 minutes is 0.25, 30 is 0.5, 45 is 0.75. So 8 hours 15 minutes is 8.25 hours.</p>""",
+        'faq': [
+            ('How many hours is 9 to 5?', '8 hours. With a 30-minute unpaid lunch it is 7 hours 30 minutes, or 7.5 hours.'),
+            ('How do I write 7 hours 45 minutes as a decimal?', '7.75 hours. 45 minutes divided by 60 is 0.75.'),
+            ('Does the calculator handle overnight shifts?', 'Yes. If the end time is earlier than the start time, it counts the shift as ending the next day.'),
+        ],
+    },
+    {
+        'slug': 'hourly-paycheck-calculator', 'card': 'Hourly rate to weekly, biweekly, monthly and yearly gross pay.', 'tool': 'salary',
+        'title': 'Hourly Paycheck Calculator: Weekly, Biweekly and Yearly Pay',
+        'h1': 'Hourly paycheck calculator',
+        'desc': 'Free hourly paycheck calculator. Enter your hourly rate and weekly hours to see gross pay per week, per two weeks, per month and per year, with overtime.',
+        'lede': 'Enter your hourly rate and the hours you work in a week. You get gross pay per week, per two weeks, per month and per year, with overtime over 40 hours at time and a half.',
+        'form': RATE + field('hours', 'Hours per week', '40', attrs='step="0.5" min="0" inputmode="decimal"')
+                + field('weeks', 'Weeks worked per year', '52', attrs='step="1" min="1" max="52" inputmode="numeric"'),
+        'result': out('o-week', 'Per week') + out('o-2week', 'Per two weeks', True) + out('o-month', 'Per month (average)')
+                  + out('o-year', 'Per year') + out('o-ot', 'Weekly overtime'),
+        'cta': 'Real weeks are not all the same. Paydar adds up the hours you actually worked and shows what each paycheck should be.',
+        'body': """<h2>Gross pay, before taxes</h2>
+<p>These are gross amounts: pay before taxes and deductions. Your take-home pay depends on your tax withholding, benefits and state, so it will be lower.</p>
+<h2>How the numbers are worked out</h2>
+<p>Weekly pay is your rate times your hours, with hours over 40 paid at 1.5 times the rate. Biweekly pay is two weeks. Yearly pay is the weekly amount times the weeks you work, and monthly pay is the yearly amount divided by 12.</p>
+<p>At $20 an hour and 40 hours a week: $800 a week, $1,600 every two weeks, about $3,467 a month and $41,600 a year.</p>""",
+        'faq': [
+            ('How much is $20 an hour per year?', '$41,600 before taxes, at 40 hours a week for 52 weeks.'),
+            ('How much is $15 an hour biweekly?', '$1,200 before taxes for two 40-hour weeks.'),
+            ('Why is my paycheck different from this?', 'This shows gross pay. Taxes and deductions come out of it. If the gross pay on your stub is lower than your hours come to, compare your hours with the paycheck checker.'),
+        ],
+    },
 ]
 
 
-V = '5'  # bump when site.css or tools.js change: browsers cache them for hours
+V = '6'  # bump when site.css or tools.js change: browsers cache them for hours
 APPLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>')
 STORE_BTN = f'<a class="store" href="{STORE}" aria-label="Download Paydar on the App Store">{APPLE}<span><small>Download on the</small><b>App Store</b></span></a>'
 
