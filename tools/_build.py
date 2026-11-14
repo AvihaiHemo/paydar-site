@@ -11,7 +11,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = 'https://paydarapp.com'
-LEGAL = 'https://avihaihemo.github.io/apps/paydar'
+LEGAL = 'https://paydarapp.com'
 STORE = 'https://apps.apple.com/us/app/paydar-hours-tracker-pay/id6821644227'
 DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
@@ -272,7 +272,7 @@ PAGES = [
 ]
 
 
-V = '6'  # bump when site.css or tools.js change: browsers cache them for hours
+V = '7'  # bump when site.css or tools.js change: browsers cache them for hours
 APPLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>')
 STORE_BTN = f'<a class="store" href="{STORE}" aria-label="Download Paydar on the App Store">{APPLE}<span><small>Download on the</small><b>App Store</b></span></a>'
 
@@ -312,7 +312,7 @@ def head(title, desc, path, depth, extra='', current=''):
 <nav class="nav-links" aria-label="Main">
 <a class="opt" href="{home}#how">How it works</a>
 <a href="{up}tools/"{cur('tools')}>Calculators</a>
-<a class="opt" href="{LEGAL}/support/">Support</a>
+<a class="opt" href="{up}support/"{cur('support')}>Support</a>
 </nav>
 <a class="btn" href="{STORE}">{APPLE}Get the app</a>
 </div></header>
@@ -329,7 +329,7 @@ def foot(depth):
     up = '../' * depth
     return f"""<footer><div class="wrap">
 <span class="copy">© 2026 Avihai Hemo</span>
-<a href="{up or './'}">Paydar</a><a href="{up}tools/">Free calculators</a><a href="{LEGAL}/privacy/">Privacy Policy</a><a href="{LEGAL}/support/">Support</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+<a href="{up or './'}">Paydar</a><a href="{up}tools/">Free calculators</a><a href="{up}privacy/">Privacy Policy</a><a href="{up}support/">Support</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
 </div></footer>
 </body>
 </html>
@@ -477,7 +477,13 @@ def main():
         f.write(index())
     with open(os.path.join(HERE, '..', 'index.html'), 'w') as f:
         f.write(landing())
-    urls = ['', 'tools/'] + [f"tools/{p['slug']}/" for p in PAGES]
+    for name, title, desc in [('privacy', 'Paydar Privacy Policy', 'How Paydar handles your data: what stays on your iPhone, what Cloud Backup stores, and your choices.'),
+                              ('support', 'Paydar Support', 'Help with Paydar: contact, subscriptions, restoring purchases and moving to a new iPhone.')]:
+        body = open(os.path.join(HERE, '..', 'legal', name + '.html')).read()
+        os.makedirs(os.path.join(HERE, '..', name), exist_ok=True)
+        with open(os.path.join(HERE, '..', name, 'index.html'), 'w') as f:
+            f.write(head(title, desc, name + '/', 1, current=name) + f'<main class="wrap narrow page legal">\n{body}</main>\n' + foot(1))
+    urls = ['', 'tools/'] + [f"tools/{p['slug']}/" for p in PAGES] + ['privacy/', 'support/']
     with open(os.path.join(HERE, '..', 'sitemap.xml'), 'w') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                 + ''.join(f'  <url><loc>{BASE}/{u}</loc></url>\n' for u in urls) + '</urlset>\n')

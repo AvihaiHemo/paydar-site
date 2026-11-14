@@ -224,3 +224,7 @@ h1 em { background: linear-gradient(var(--green-tint), var(--green-tint)) no-rep
   .js [data-reveal], .js .row[data-reveal] .shot { opacity: 1; transform: none; }
   h1 em { background-size: 100% 0.32em; }
 }
+.legal h2 { font-size: 22px; margin-top: 30px; }
+.legal .card { margin: 16px 0; }
+.legal table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.legal td, .legal th { border-bottom: 1px solid var(--hair); padding: 8px 6px; text-align: left; vertical-align: top; }
